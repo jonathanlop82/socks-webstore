@@ -2,6 +2,8 @@ from flask import Flask, render_template
 
 from flask_sqlalchemy import SQLAlchemy
 
+from datetime import datetime
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///socks-store.db"
@@ -30,10 +32,12 @@ db.create_all()
 # db.session.add(item)
 # db.session.commit()
 
+year = datetime.now().year
+
 @app.route('/')
 def index():
     all_items = db.session.query(Items).all()
-    return render_template('index.html', all_items=all_items)
+    return render_template('index.html', all_items=all_items, year=year)
 
 
 if __name__ == '__main__':
