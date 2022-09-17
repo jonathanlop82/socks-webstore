@@ -1,0 +1,29 @@
+.top {
+    background-color: #D9D9D9;
+    height: 40px;
+}
+
+.header {
+    margin: 0px;
+    padding: 0px;
+}
+
+.items {
+    margin-top: 60px;
+}
+
+.item {
+    margin: 20px 40px 10px 40px;
+}
+
+.head-title {
+    font-family: 'Fira Sans', sans-serif;;
+}
+
+.footer {
+    background-color: #212529;
+    height: 200px;
+    margin-top: 60px;
+    padding-top: 60px;
+    color: white;
+}
