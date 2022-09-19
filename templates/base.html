@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonny's Socks</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon/favicon-16x16.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e4414c5143.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    
+    
+</head>
+<body>
+    <div class="container top">
+
+    </div>
+    <div class="container header">
+        <img width="1300" height="200" src="{{ url_for('static', filename='img/banner.png') }}" alt="">
+    </div>
+    <div class="container menu">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+              <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for("index") }}"><i class="fa-solid fa-house"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("store") }}">Store</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">posters</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Management
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{  url_for("add") }}">Add Item</a></li>
+                      <li><a class="dropdown-item" href="{{  url_for("update") }}">Update Item</a></li>
+                      <li><a class="dropdown-item" href="{{  url_for("delete") }}">Delete Item Item</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                  </li> -->
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+    </div>
+
+    {% block main %}
+    {% endblock %}
+
+  <!-- footer -->
+
+  <div class="container footer text-center">
+
+    <p>Derechos reservados</p>
+    <p>Diseño de @jonathanlop82</p>
+    <p>2022</p>
+  </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

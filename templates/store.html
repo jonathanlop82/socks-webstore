@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <!-- Items -->
+
+    <div class="container items">
+      <h1 class="head-title">Store</h1>
+        <div class="row d-flex justify-content-evenly text-center">
+          {% for item in all_items %}
+            <div class="col-3 d-flex justify-content-evenly">
+                <div class="card item" style="width: 15rem;">
+                    <img src={{ item.image }} class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.name }}</h5>
+                      <p class="card-text">$ {{ "%.2f"|format(item.price) }}</p>
+                      <a href="#" class="btn btn-warning">Comprar</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+            <!-- <div class="col">
+                <div class="card item" style="width: 15rem;">
+                    <img src="{{ url_for('static', filename='img/items/2.jpeg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">$ 5.00</p>
+                      <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="card item" style="width: 15rem;">
+                    <img src="{{ url_for('static', filename='img/items/3.jpeg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">$ 5.00</p>
+                      <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                  </div>
+            </div> -->
+        </div>
+    </div>
+
+
+{% endblock %}

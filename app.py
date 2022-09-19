@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+
+from flask import Flask, render_template, request, redirect
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -37,7 +38,35 @@ year = datetime.now().year
 @app.route('/')
 def index():
     all_items = db.session.query(Items).all()
-    return render_template('index.html', all_items=all_items, year=year)
+    total_items = len(all_items)
+    return render_template('index.html', all_items=all_items, total_items=total_items)
+
+@app.route('/add', methods=("POST","GET"))
+def add():
+    if request.method == "POST":
+        name = request.form.get("name")
+        url_image = request.form.get("urlimage")
+        price = request.form.get("price")
+        new_item = Items(name=name, image=url_image, price=price)
+        db.session.add(new_item)
+        db.session.commit()
+        return redirect('/')
+    return render_template('add.html')
+
+
+@app.route('/delete')
+def delete():
+    return render_template('delete.html')
+
+
+@app.route('/update')
+def update():
+    return render_template('update.html')
+
+@app.route('/store')
+def store():
+    all_items = db.session.query(Items).all()
+    return render_template('store.html', all_items=all_items)
 
 
 if __name__ == '__main__':
