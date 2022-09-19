@@ -61,7 +61,9 @@ def delete():
 
 @app.route('/update')
 def update():
-    return render_template('update.html')
+    all_items = db.session.query(Items).all()
+    total_items = len(all_items)
+    return render_template('update.html', all_items=all_items)
 
 @app.route('/store')
 def store():
