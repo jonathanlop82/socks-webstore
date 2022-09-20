@@ -22,7 +22,8 @@
             <td>{{ item.name }}</td>
             <td>{{ item.image }}</td>
             <td>{{ "%.2f"|format(item.price) }}</td>
-            <td><button type="button" class="btn btn-primary">Update</button></td>
+            <td><a class="btn btn-primary" href="/update/{{ item.id }}" role="button">Edit</a></td>
+            <!-- <td><button type="button" class="btn btn-primary" onclick="/update/{{ item.id }}">Update</button></td> -->
           </tr>
           {% endfor %}
         </tbody>

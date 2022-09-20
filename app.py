@@ -1,4 +1,5 @@
 
+from crypt import methods
 from flask import Flask, render_template, request, redirect
 
 from flask_sqlalchemy import SQLAlchemy
@@ -21,17 +22,6 @@ class Items(db.Model):
 
 db.create_all()
 
-# item = Items(name='Sock One', image='https://knousshe.sirv.com/Images/1.jpeg', price='5.00')
-# db.session.add(item)
-# db.session.commit()
-
-# item = Items(name='Sock Two', image='https://knousshe.sirv.com/Images/2.jpeg', price='5.50')
-# db.session.add(item)
-# db.session.commit()
-
-# item = Items(name='Sock Three', image='https://knousshe.sirv.com/Images/3.jpeg', price='4.50')
-# db.session.add(item)
-# db.session.commit()
 
 year = datetime.now().year
 
@@ -56,7 +46,8 @@ def add():
 
 @app.route('/delete')
 def delete():
-    return render_template('delete.html')
+    all_items = db.session.query(Items).all()
+    return render_template('delete.html', all_items=all_items)
 
 
 @app.route('/update')
@@ -69,6 +60,19 @@ def update():
 def store():
     all_items = db.session.query(Items).all()
     return render_template('store.html', all_items=all_items)
+
+@app.route('/update/<int:id>', methods=["POST","GET"])
+def update_item(id):
+    if request.method == "POST":
+        item_to_update = Items.query.get(id)
+        item_to_update.name = request.form.get("name")
+        item_to_update.image = request.form.get("urlimage")
+        item_to_update.price = request.form.get("price")
+        db.session.commit()
+        return redirect('/')
+    item = Items.query.filter_by(id=id).first()
+    return render_template('updateitem.html', item=item)
+
 
 
 if __name__ == '__main__':
