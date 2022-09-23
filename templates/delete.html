@@ -22,7 +22,7 @@
             <td>{{ item.name }}</td>
             <td>{{ item.image }}</td>
             <td>{{ "%.2f"|format(item.price) }}</td>
-            <td><a class="btn btn-primary" href="" role="button">Delete</a></td>
+            <td><a class="btn btn-primary" href="/delete/{{ item.id }}" role="button">Delete</a></td>
             <!-- <td><button type="button" class="btn btn-primary" onclick="/update/{{ item.id }}">Update</button></td> -->
           </tr>
           {% endfor %}

@@ -49,6 +49,16 @@ def delete():
     all_items = db.session.query(Items).all()
     return render_template('delete.html', all_items=all_items)
 
+@app.route('/delete/<int:id>', methods=['POST','GET'])
+def delete_item(id):
+    item = Items.query.filter_by(id=id).first()
+    if request.method == "POST":
+        item_to_delete = Items.query.get(id)
+        db.session.delete(item_to_delete)
+        db.session.commit()
+        return redirect('/delete')
+    return render_template('deleteitem.html', item=item)
+
 
 @app.route('/update')
 def update():
@@ -69,7 +79,7 @@ def update_item(id):
         item_to_update.image = request.form.get("urlimage")
         item_to_update.price = request.form.get("price")
         db.session.commit()
-        return redirect('/')
+        return redirect('/update')
     item = Items.query.filter_by(id=id).first()
     return render_template('updateitem.html', item=item)
 

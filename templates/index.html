@@ -25,12 +25,12 @@
                 <div class="row d-flex justify-content-evenly text-center">
               {% endif %} 
                 <div class="col d-flex justify-content-evenly">
-                    <div class="card item" style="width: 18rem;">
+                    <div class="card item" style="width: 20rem;">
                         <img src={{ item.image }} class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{ item.name }}</h5>
                           <p class="card-text">$ {{ "%.2f"|format(item.price) }}</p>
-                          <a href="#" class="btn btn-warning">Comprar {{loop.index}}</a>
+                          <a href="#" class="btn btn-warning">Comprar</a>
                         </div>
                       </div>
                 </div>
@@ -60,6 +60,13 @@
 
     </div>
 
+    <!-- Image -->
+
+    <div class="unsplash">
+      <img src="{{ url_for('static', filename='img/unsplash.jpeg') }}" class="img-fluid" alt="...">
+    </div>
+
+
     <!-- Best Sellers -->
 
     <div class="container items">
@@ -76,14 +83,14 @@
               <!-- Items -->
 
               <div class="row d-flex justify-content-evenly text-center">
-              {% elif loop.index % 3 == 1 %}
+              {% elif loop.index % 4 == 1 %}
               <div class="carousel-item">
                 <!-- Items -->
   
                 <div class="row d-flex justify-content-evenly text-center">
               {% endif %} 
                 <div class="col d-flex justify-content-evenly">
-                    <div class="card item" style="width: 15rem;">
+                    <div class="card item" style="width: 12rem;">
                         <img src={{ item.image }} class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{ item.name }}</h5>
@@ -92,7 +99,7 @@
                         </div>
                       </div>
                 </div>
-              {% if (loop.index % 3 == 0 or loop.index == total_items ) %}
+              {% if (loop.index % 4 == 0 or loop.index == total_items ) %}
               </div>
 
               <!-- End Items -->
@@ -134,14 +141,14 @@
               <!-- Items -->
 
               <div class="row d-flex justify-content-evenly text-center">
-              {% elif loop.index % 3 == 1 %}
+              {% elif loop.index % 4 == 1 %}
               <div class="carousel-item">
                 <!-- Items -->
   
                 <div class="row d-flex justify-content-evenly text-center">
               {% endif %} 
                 <div class="col d-flex justify-content-evenly">
-                    <div class="card item" style="width: 15rem;">
+                    <div class="card item" style="width: 12rem;">
                         <img src={{ item.image }} class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{ item.name }}</h5>
@@ -150,7 +157,7 @@
                         </div>
                       </div>
                 </div>
-              {% if (loop.index % 3 == 0 or loop.index == total_items ) %}
+              {% if (loop.index % 4 == 0 or loop.index == total_items ) %}
               </div>
 
               <!-- End Items -->

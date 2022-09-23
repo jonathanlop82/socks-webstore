@@ -1,6 +1,7 @@
 .top {
-    background-color: #D9D9D9;
-    height: 40px;
+    background-color: #FFC108;
+    height: 60px;
+    padding: 1rem;
 }
 
 .header {
@@ -10,10 +11,11 @@
 
 .items {
     margin-top: 60px;
+    margin-bottom: 40px;
 }
 
 .item {
-    margin: 20px 40px 10px 40px;
+    margin: 5px 10px 5px 10px;
 }
 
 .head-title {
@@ -22,7 +24,7 @@
 
 .footer {
     background-color: #212529;
-    height: 200px;
+    height: 300px;
     margin-top: 60px;
     padding-top: 60px;
     color: white;

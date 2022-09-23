@@ -3,24 +3,32 @@
 {% block main %}
 
 <div class="container add-items">
-    <h1>Add Items</h1>
+    
+    <div class="row">
+      <div class="col-3">
 
-    <form action="{{ url_for("add") }}" method="post">
-        <div class="mb-3">
-          <label for="InputName" class="form-label">Item Name:</label>
-          <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp" name="name">
-          <div id="nameHelp" class="form-text">Enter the item name.</div>
-        </div>
-        <div class="mb-3">
-          <label for="InputUrlImage" class="form-label">Url Image:</label>
-          <input type="text" class="form-control" id="InputUrlImage" name="urlimage">
-        </div>
-        <div class="mb-3">
-            <label for="InputPrice" class="form-label">Price:</label>
-            <input type="text" class="form-control" id="InputPrice" name="price">
+      </div>
+      <div class="col-6">
+        <h1>Add Items</h1>
+        <form action="{{ url_for("add") }}" method="post">
+          <div class="mb-3">
+            <label for="InputName" class="form-label">Item Name:</label>
+            <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp" name="name">
+            <div id="nameHelp" class="form-text">Enter the item name.</div>
           </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+          <div class="mb-3">
+            <label for="InputUrlImage" class="form-label">Url Image:</label>
+            <input type="text" class="form-control" id="InputUrlImage" name="urlimage">
+          </div>
+          <div class="mb-3">
+              <label for="InputPrice" class="form-label">Price:</label>
+              <input type="text" class="form-control" id="InputPrice" name="price">
+            </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    
 </div>
 
 
