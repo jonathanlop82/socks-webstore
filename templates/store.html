@@ -14,7 +14,10 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ item.name }}</h5>
                       <p class="card-text">$ {{ "%.2f"|format(item.price) }}</p>
-                      <a href="#" class="btn btn-warning">Comprar</a>
+                      <form action="/create-checkout-session/{{ item.price_id }}" method="POST">
+                        <button class="btn btn-warning" type="submit" id="checkout-button">Checkout</button>
+                      </form>
+                      <!-- <a href="#" class="btn btn-warning">Comprar</a> -->
                     </div>
                   </div>
             </div>

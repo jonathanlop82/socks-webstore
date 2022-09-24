@@ -1,5 +1,5 @@
-
-from crypt import methods
+from email.mime import image
+import os
 from flask import Flask, render_template, request, redirect, url_for
 
 from flask_sqlalchemy import SQLAlchemy
@@ -13,9 +13,18 @@ from wtforms import StringField, PasswordField, SubmitField
 
 from datetime import datetime
 
+import stripe
+
+stripe.api_key = os.environ['STRIPE_API_KEY']
+
 login_manager = LoginManager()
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='static')
+
+YOUR_DOMAIN = 'http://localhost:5000'
+
 login_manager.init_app(app)
 bcrypt = Bcrypt(app)
 
@@ -57,6 +66,7 @@ class Items(db.Model):
     name = db.Column(db.String(250), unique=True, nullable=False)
     image = db.Column(db.String(250), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    price_id = db.Column(db.String(250), nullable=False)
 
     def __repr__(self):
         return '<Items %r>' % self.name
@@ -122,10 +132,15 @@ def add():
     if request.method == "POST":
         name = request.form.get("name")
         url_image = request.form.get("urlimage")
-        price = request.form.get("price")
-        new_item = Items(name=name, image=url_image, price=price)
+        price = float(request.form.get("price"))
+        product_id = stripe.Product.create(name=name, images=[url_image])
+        # print(product_id.id)
+        price_id = stripe.Price.create(product=product_id.id, unit_amount=int(price * 100), currency="usd")
+        # print(price_id.id)
+        new_item = Items(name=name, image=url_image, price=price, price_id=price_id.id)
         db.session.add(new_item)
         db.session.commit()
+        
         return redirect('/')
     return render_template('add.html')
 
@@ -173,6 +188,25 @@ def update_item(id):
     item = Items.query.filter_by(id=id).first()
     return render_template('updateitem.html', item=item)
 
+@app.route('/create-checkout-session/<string:price_id>', methods=['POST'])
+def create_checkout_session(price_id):
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    # Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                    'price': price_id,
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=YOUR_DOMAIN + '/success.html',
+            cancel_url=YOUR_DOMAIN + '/cancel.html'
+        )
+    except Exception as e:
+        return str(e)
+
+    return redirect(checkout_session.url, code=303)
 
 
 if __name__ == '__main__':
