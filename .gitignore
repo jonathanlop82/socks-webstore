@@ -33,6 +33,12 @@ MANIFEST
 *.manifest
 *.spec
 
+<<<<<<< HEAD
+=======
+# Database
+socks-store.db
+
+>>>>>>> d3bb7d80aee470fe97bb5d050fdeeae9d69e3424
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -127,6 +133,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 
 # Database
 socks-store.db
+=======
+>>>>>>> d3bb7d80aee470fe97bb5d050fdeeae9d69e3424
